@@ -97,7 +97,7 @@ In this task, you will sign into the Microsoft Teams admin center and create a A
 
 	  - **Resource Accounts:** CQ_MainLine@&lt;Lab Domain&gt;.onmicrosoft.com
 
-	  - **Language:** English (Untied States)
+	  - **Language:** English (United States)
 
   - **Call Answering Tab**
 

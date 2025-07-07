@@ -38,7 +38,7 @@ You have just started the pilot project. In this first lab you will set up a per
 
 In this exercise, you will assign the required admin permissions to continue with the other labs and exercises in this course.
 
-### Task 1 - Assign Allan Deyoung to the Teams Administrator role
+### Task 1 - Assign Allan Deyoung to the required roles
 
 In the following task, you will use the global administrator account MOD Administrator to assign Teams Service Administrator permissions to the account for Allan Deyoung.
 
@@ -58,7 +58,10 @@ In the following task, you will use the global administrator account MOD Adminis
 
 1. In the **Manage admin roles** pane, select **Admin center access**.
 
-1. In the list, select **Exchange Administrator** and **Teams Administrator**.
+1. In the list, select the following roles:
+    - **Exchange Administrator**
+    - **Teams Administrator**
+    - **User Administrator**
 
 1. At the bottom of the card, select **Save changes**. Admin roles are updated.
 

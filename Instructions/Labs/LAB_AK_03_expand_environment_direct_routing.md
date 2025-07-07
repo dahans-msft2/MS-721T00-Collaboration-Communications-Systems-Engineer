@@ -64,9 +64,7 @@ This task updates the o365ready.com DNS server with your lab's public IP address
 
 1. In the **Lab Code** box, enter **MS720**, press **Enter** or select **Submit** (**Note**: Do not enter MS721.).
 
-1. Take note your LAB NUMBER. This lab code will expire 90 days after the start of this course. We will refer to this as your **LAB NUMBER** going forward in the lab.
-
-1. When the process is completed, you will see a **Student LAB NUMBER** dialog, followed by a 5 digit number. Note this number down and remember it. You will refer to this five-digit number throughout the labs.
+1. When the process is completed, you will see a **Student LAB NUMBER** dialog, followed by a 5 digit number. Note this number down and remember it. We will refer to this as your **LAB NUMBER** going forward in the lab.
 
 1. You will be using all five digits as part of your organization's on-premises domain.
 
@@ -306,7 +304,7 @@ You have successfully converted the certificate for the SBC.
 
 ### Task 4 – Setting up Session Border Controller (SBC) Virtual Machine resources
 
-In the following task you will create the new session boarder controller resource hosted within Microsoft Azure.
+In the following task you will create the new session border controller resource hosted within Microsoft Azure.
 
 1. You are still on MS721-CLIENT01 where you are still signed in as **Admin**.
 
@@ -388,7 +386,7 @@ You have successfully created an SBC hosted inside Microsoft Azure.
 
 ### Task 6 – Sign into and apply a base configuration to the SBC
 
- In the following task, we will configure the Session Boarder Controller (SBC) to work with Microsoft Teams.
+ In the following task, we will configure the Session Border Controller (SBC) to work with Microsoft Teams.
 
 1. You are still on MS721-CLIENT01 where you are still signed in as “Admin”.
 
@@ -536,7 +534,7 @@ You have successfully created a voice routing policy with PSTN Usages containing
 
 ### Task 2 - Assign the voice routing policy named NA-National to Megan Bowen
 
-In the following task, you will asign the voice routing policy you created in an earlier task to your users.
+In the following task, you will assign the voice routing policy you created in an earlier task to your users.
 
 1. You are still on MS721-CLIENT01 where you are still signed in as “Admin”, and you have an open **Teams PowerShell** session signed in as **Allan Deyoung**.
 
@@ -620,12 +618,11 @@ In the following task, you will assign the Emergency Location Identification num
 
 1. Review the settings for **ELIN**. It should be **425-555-1200**. The number was set in an earlier task, and once the location has been validated, it's properties cannot be changed. This includes the ELIN number. 
 
-1. Select **Save**.
+1. Select **Cancel** if no changes were made, and **Save** if you made changes.
 
 1. Leave the browser window open.
 
 You have successfully assigned the ELIN number to the location for emergency addresses.
-
 
 ### Task 6 - Configure Emergency Call Routing Policy
 
@@ -695,13 +692,13 @@ In the following task, you will configure location-based routing to allow connec
 
 1. Select the three dashes, select **Locations**, then **Network topology.**
 
-1. Select **Add**, give the Network Site a name of **Washington** and description as **Washington Network**. Set the **Network region** to **US** and then hange **Location based routing** to **On**.
+1. Select **Add**, give the Network Site a name of **Washington** and description as **Washington Network**. Set the **Network region** to **US** and then change **Location based routing** to **On**.
 
 1. Select **Add subnets,** for **IP address** enter **192.168.0.0** and a **Network Range** of **24,** select **Apply,** and then select **Save**
 
     ![Screenshot of the Teams Admin Center Network Topology Network Sites page, showing the settings required.](./Linked_Image_Files/M03_L03_E04_T08_01.png)
 
-1. Within the Teams Admin Center select **Locations**, then **Netowork topology.**
+1. Within the Teams Admin Center select **Locations**, then **Network topology.**
 
 1. Select **Trusted IPs**, then **Add**. Enter the workstation IP found in Exercise 1, Task 1 with a **Network Range** of **32**, a **Description** of **Washington.**, and then select **Save**
 
@@ -717,7 +714,7 @@ In the following task, you will configure location-based routing to allow connec
 
 1. Leave the browser window open.
 
-You have successfully implemented the Location based routing which will route your calls dependent upon the machine's local subnet to which it is registered. Additionally, you have sucvcessfully implemented dynamic Emergency Calling Policy and Emergency Call Routing policy assignment for users as they visit this network site.
+You have successfully implemented the Location based routing which will route your calls dependent upon the machine's local subnet to which it is registered. Additionally, you have successfully implemented dynamic Emergency Calling Policy and Emergency Call Routing policy assignment for users as they visit this network site.
 
 ### Task 9 - Modify the Global Dial Plan to Support Dialing 911 and 933
 
@@ -820,4 +817,4 @@ In this task, you will validate that PIDF/LO information from the LIS database i
 
     ![Screenshot of Syslog viewer, showing the expanded XML Data](./Linked_Image_Files/M03_L03_E05_T02_08.png)
 
-Congratulations, you have just validated that the SBC is recieving PIDF/LO information when Emergency calls are being placed and that required policies are working as expected.
+Congratulations, you have just validated that the SBC is receiving PIDF/LO information when Emergency calls are being placed and that required policies are working as expected.
