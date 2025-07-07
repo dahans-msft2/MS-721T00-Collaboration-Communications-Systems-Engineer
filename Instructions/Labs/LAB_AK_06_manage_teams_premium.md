@@ -239,7 +239,7 @@ In this task, you will sign into the Microsoft Teams admin center and modify the
 
 You have successfully modified the Global meeting customization policy and applied it to users with Teams premium licensing.
 
-### Task 2 - Create a Meeting as a Teams Premium User and validate the branding has applied.
+### Task 2 - Create a Meeting as a Teams Premium User and validate the branding has applied
 
 In this task, you will sign into the Microsoft Teams client, create a meeting, and validate that the theming has been applied for those joining the meeting. 
 

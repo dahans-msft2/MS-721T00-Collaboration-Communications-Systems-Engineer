@@ -144,7 +144,7 @@ In this task, you will sign into the Microsoft Graph PowerShell Module and disab
 	```
 The accounts anow have password expiration disabled and are ready to have additional configurations applied.
 
-### Task 4 - Aquire phone numbers to assign to the resource accounts
+### Task 4 - Acquire phone numbers to assign to the resource accounts
 
 In this task, you will sign into the Microsoft Teams admin center and will aquire two phone numbers for each resource account.
 
@@ -182,7 +182,7 @@ In this task, you will sign into the Microsoft Teams admin center and will aquir
 
 You have successfully ordered a User (subscriber) phone number through the Teams admin center.
 
-### Task 5 - Assign a phone number to each resouce account
+### Task 5 - Assign a phone number to each resource account
 
 In this task, you will sign into the Microsoft Teams admin center and will assign a phone number to each previously created account.
 
@@ -212,7 +212,7 @@ In this exercise, you will create policies for Common Area Phones, apply the pol
 
   - **Estimated Time to complete**: 30 minutes
 
-### Task 1 - Configure Microsoft Teams IP Phone Policies.
+### Task 1 - Configure Microsoft Teams IP Phone Policies
 
 In this task, you will connect to Microsoft Teams PowerShell and create an IP Phone Policy for Common Area Phones. This policy removes the default user experience and locks the phone down so that it cannot be easily signed out of, and restricts the device to make and recieve calls. Access to other apps on the phone is prohibited.
 
@@ -237,6 +237,7 @@ In this task, you will connect to Microsoft Teams PowerShell and create an IP Ph
     Get-CsTeamsIPPhonePolicy
 
     ```
+    
     ![A screenshot showing the Global IP Phone policy.](Linked_Image_Files/M05_L05_E02_T01_01.png)
 
 1. Run the New-TeamsIPPhonePolicy cmdlet. This command creates a per-user online IP Phone Policy that will lock down the phone to the CommonAreaSignIn experience. It also disables the home screen and the better together functionality with the Teams client.
@@ -265,12 +266,13 @@ In this task, you will connect to Microsoft Teams PowerShell and assign the prev
 
 1. You have an active PowerShell window on **MS721-CLIENT01** where you are still signed in as “Admin”.
 
-1. Run the Grant-CsTeamsIPPhonePolicy command. The command will apply the policy to the user created previously. Make sure you replate <LAB DOMAIN> with the UPN associated to the user in the lab.
+1. Run the `Grant-CsTeamsIPPhonePolicy` command. The command will apply the policy to the user created previously. Make sure you replate &lt;LAB DOMAIN&gt; with the UPN associated to the user in the lab.
 
     ```powershell
     Grant-CsTeamsIPPhonePolicy -PolicyName CAP -Identity CAP_Reception@<LAB Domain>.onmicrosoft.com
 
     ```
+
 1. The cmdlet does not provide any output. When you are back on the command prompt, leave the window open for the next exercise.
 
 You have successfully provisioned an account for use with a Common Area Phone in Microsoft Teams.
@@ -315,7 +317,7 @@ In this task, you will sign into Microsoft Exchange PowerShell and configure the
     ```
 You have successfully setup calendar processing on a Teams Rooms Account.
 
-### Task 2 - Setup Surface Hub 3.
+### Task 2 - Setup Surface Hub 3
 
 In this task, you will sign into the a virtual Surface Hub 3 running Teams Rooms on Windows and will validate that the account was setup properly.
 
@@ -337,7 +339,7 @@ In this task, you will sign into the a virtual Surface Hub 3 running Teams Rooms
 
 You have successfully setup a Surface Hub 3 with the Microsoft Teams Rooms on Windows App.
 
-### Task 3 - Manage Surface Hub 3 & Teams Rooms on Windows with the Pro Management Portal.
+### Task 3 - Manage Surface Hub 3 & Teams Rooms on Windows with the Pro Management Portal
 
 In this task, you will sign into the Teams Rooms Pro Management Portal and add manage the Surface Hub 3 from the portal. NOTE: It can take up to an hour before the room will appear in this portal.
 
