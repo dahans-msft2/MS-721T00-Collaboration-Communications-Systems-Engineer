@@ -5,6 +5,9 @@ lab:
     module: 'Learning Path 02: Manage Teams collaboration communications systems'
 ---
 
+> **Abstract:**  
+> This lab guides you through managing and troubleshooting Teams Phone users, configuring call queues and auto attendants, provisioning Teams devices, and monitoring call quality. The scenario addresses real-world support and operational tasks in a Teams Phone deployment.
+
 # Lab 04: Manage your Teams Phone environment
 # Student lab answer key
 
@@ -20,7 +23,7 @@ Contoso needs to make changes to existing users who are enabled for Teams Voice 
 
 > [!IMPORTANT]
 > Throughout this lab, you will use PowerShell cmdlets that must be customized for your specific lab configuration. In the instructions below, when you see &lt;LAB NUMBER&gt; in a PowerShell command, you should replace it with the LAB NUMBER obtained in Lab 3, Exercise 1, Task 2.
-> You will also see &lt;TENANT NAME&GT; used in PowerShell commands and should replace it with the Microsoft 365 TENANT NAME (e.g. M365x01234567) for your Microsoft 365 account.
+> You will also see &lt;TENANT NAME&GT; used in PowerShell commands and should replace it with the Microsoft 365 TENANT NAME (e.g. WWLx012345) for your Microsoft 365 account.
 
 ## Exercise 1: Manage voice users
 
@@ -79,7 +82,7 @@ In this task, an existing user who isn’t enabled for voice services must be en
 1. Run the Grant-CsOnlineVoiceRoutingPolicy, the command assigns a per-user online voice routing policy to one or more users. Online voice routing policies manage online PSTN usages for Phone System users:
 
     ```powershell
-    Grant-CsOnlineVoiceRoutingPolicy -Identity NestorW@lab<LAB NUMBER>.o365ready.com -PolicyName "North America"
+    Grant-CsOnlineVoiceRoutingPolicy -Identity NestorW@lab<LAB NUMBER>.o365ready.com -PolicyName "NA-National"
 
     ```
 
@@ -201,7 +204,7 @@ In this task, you will create a call queue. A call queue is a group of agents th
 
 1. Enter **Sales CQ** as **Display name**
 
-1. **SalesCQ** as **Username** and leave the domain as-is.
+1. **SalesCQ** as **Username** and select your default domain from the dropdown list.
 
 1. **Resource account type** select **Call queue**, then select **Save**.
 
@@ -252,7 +255,13 @@ Now we will create an auto attendant and direct one of the options to send calls
 
 1. Under Dial scope select **Next**.
 
-1. Under **Resource Accounts**, Select **Add**, enter **Sales AA** in the search box, then select **Add Resource Account**, enter **Display Name** of **Sales AA**, Username is **SalesAA**, and **Resource account type** of **Auto Attendant**, select **Save**.
+1. Under **Resource Accounts**, Select **Add**, enter **Sales AA** in the search box, then select **Add Resource Account**, enter the following values:
+    - **Display Name** of **Sales AA**
+    - **Unique Username** is **SalesAA**
+    - **Domain name** is the default Microsoft 365 domain
+    - **Resource account type** of **Auto Attendant**
+
+1. Select **Save**.
 
 1. Select **Add**, select **Submit** under **Resource Accounts** menu.
 
@@ -734,7 +743,7 @@ A Teams Phone user working from home reports they are having call quality issues
 
 1. The browser will prompt you to Open or Save as a new download for the .NET runtime files, select **open** and download any additional packages as needed.
 
-1. Once all teh downloads are installed, the Office 365 Network Onboarding Advanced Tests box will appear and start running tests.
+1. Once all the downloads are installed, the Office 365 Network Onboarding Advanced Tests box will appear and start running tests.
 
 1. You will get a prompt to install .Net Core, would you like to download it now, click Yes
 
@@ -786,11 +795,11 @@ In this task, we will review the PSTN Usage report.
 
 1. Open Microsoft Edge from the task bar and browse to the **Microsoft Teams admin center** at [https://admin.teams.microsoft.com](https://admin.teams.microsoft.com/).
 
-1. You should be singed in as **MOD Administrator**.
+1. You should be signed in as **MOD Administrator**.
 
 1. Select **Analytics &amp; reports** on the left menu then **Usage reports**.
 
-1. Under report select the **PSTN & SMS (preview) usage** report.
+1. Under report select the **PSTN usage** report.
 
 1. Under Date range select **last 7 days**.
 
@@ -872,7 +881,7 @@ In this task, you open and review Call Quality Dashboard
 
 1. You are still signed into MS721-CLIENT01 as “Admin” and in the **Microsoft Teams admin center** as **MOD Administrator**.
 
-1. At the bottom of the left menu, select **Call Quality Dashboard**.
+1. In the navigtion menu on the left, select **Analytics & reports** then select **Call quality dashboard**.
 
 1. This will cause a new browser tab to open going to [https://cqd.teams.microsoft.com/](https://cqd.teams.microsoft.com/).
 

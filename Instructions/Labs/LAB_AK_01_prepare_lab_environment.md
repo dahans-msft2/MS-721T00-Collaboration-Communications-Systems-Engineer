@@ -5,6 +5,9 @@ lab:
     module: 'Learning Path 01: Plan and design Teams collaboration communications systems'
 ---
 
+> **Abstract:**  
+> In this lab, you will configure the foundational Microsoft 365 environment for Contoso Ltd., including user accounts, permissions, and licenses, to support Teams collaboration and voice features. The scenario guides you through preparing the environment for subsequent labs by setting up users, groups, and initial Teams administration tools.
+
 # Lab 01: Configure the lab environment
 # Student lab answer key
 
@@ -35,7 +38,7 @@ You have just started the pilot project. In this first lab you will set up a per
 
 In this exercise, you will assign the required admin permissions to continue with the other labs and exercises in this course.
 
-### Task 1 - Assign Allan Deyoung to the Teams Administrator role
+### Task 1 - Assign Allan Deyoung to the required roles
 
 In the following task, you will use the global administrator account MOD Administrator to assign Teams Service Administrator permissions to the account for Allan Deyoung.
 
@@ -55,7 +58,10 @@ In the following task, you will use the global administrator account MOD Adminis
 
 1. In the **Manage admin roles** pane, select **Admin center access**.
 
-1. In the list, select **Exchange Administrator** and **Teams Administrator**.
+1. In the list, select the following roles:
+    - **Exchange Administrator**
+    - **Teams Administrator**
+    - **User Administrator**
 
 1. At the bottom of the card, select **Save changes**. Admin roles are updated.
 
@@ -110,7 +116,7 @@ As an admin, you can assign the Teams Domestic Calling Plan license that gives u
 1. In the **Manage product licenses** pane, select **Assign more** and then select the following licenses from the list:
 
     - Microsoft Teams Domestic Calling Plan
-    - Microsoft Teams Premium Introductory Pricing
+    - Microsoft Teams Premium
 
 1. Select **Save changes** and then **Done** to close the pane.
 

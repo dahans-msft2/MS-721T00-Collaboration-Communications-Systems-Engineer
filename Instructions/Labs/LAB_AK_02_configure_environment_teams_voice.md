@@ -5,6 +5,9 @@ lab:
     module: 'Learning Path 01: Plan and design Teams collaboration communications systems'
 ---
 
+> **Abstract:**  
+> This lab focuses on preparing the Contoso environment for Microsoft Teams Phone by evaluating network readiness, configuring network topology, emergency calling, voice policies, and assigning phone numbers. The scenario covers end-to-end setup for Teams Voice, including call queues, auto attendants, and audio conferencing.
+
 # Lab 02: Configure your environment for Teams Phone
 # Student lab answer key
 
@@ -98,7 +101,7 @@ In this task, you will set up your network and sites in Teams Network Planner. C
 
 1. You will be prompted “You haven't added any network sites yet.” Select **Add a network site**.
 
-1. Enter the **Network Site Name** as **Tacoma Site**..
+1. Enter the **Network Site Name** as **Tacoma Site**.
 
 1. Enter the description as **Tacoma Office**.
 
@@ -110,7 +113,7 @@ In this task, you will set up your network and sites in Teams Network Planner. C
 
 1. Tacoma has local internet breakout, enter **50** for **Internet link capacity**.
 
-1. It is not **connected to a WAN** or **ExpressRoute**, so leave those at the default of **off**.
+1. It is **NOT connected to a WAN** or **ExpressRoute**, so leave those at the default of **off**.
 
 1. There is no local PSTN on the Tacoma site, so leave **PSTN egress** as **Use VoIP only**.
 
@@ -130,7 +133,7 @@ In this task, you will set up your network and sites in Teams Network Planner. C
 
 1. Bellevue has local internet breakout, enter **20** for **Internet link capacity**.
 
-1. It is not **connected to a WAN** or **ExpressRoute**, so leave those at the default of **off**.
+1. It is **NOT connected to a WAN** or **ExpressRoute**, so leave those at the default of **off**.
 
 1. There is no local PSTN on the Tacoma site, so leave **PSTN egress** as **Use VoIP only**
 
@@ -449,15 +452,27 @@ Now that we have added our network Region, Sites and Subnets we can map our netw
 > [!TIP]
 > This configuration refers to Emergency Locations, but when you are defining them, the Teams Admin Center calls them Emergency Addresses. They are the same thing.
 
+> [!NOTE]
+> The below information explains general best practices for implementing emergency services in Microsoft Teams. None of the information in this document should be interpreted as legal advice. Please consult with your organization's legal department and the following resources for specific requirements by state.
+
+- [https://www.intrado.com/enterprise-solutions/e911-regulations](https://www.intrado.com/enterprise-solutions/e911-regulations)
+- [https://www.911.gov/](https://www.911.gov/)
+
+US law states that a user utilizing a phone system that supports dynamic emergency dialing must be able to be dynamically have their location determined at the time of the 911 call in order to route the call to the correct/nearest Public Service Answering Point (PSAP). (Kari's Law). It also states that an internal notification be setup to where at least one individual in the organization be notified that a person placed an emergency call and where their location is. (Ray Baums Act) We use the LIS database in Microsoft Teams to map our physical sites out so that emergency calls will connect.
+
 You can map emergency location\addresses to:
 
-- Wireless Access Point (WAP) by BSSID (Basic Service Set Identifier) - Each AP has a BSSID.
-
-- Ethernet switch by Chassis ID. Each network switch is stamped with a Chassis ID that is used to identify a specific switch on a network.
+- Wireless Access Point (WAP) by BSSID (Basic Service Set Identifier) - Each AP radio has its own unique BSSID per SSID.
 
 - Ethernet switch port, which maps both the Chassis ID and the port ID. This allows a switch that spans multiple locations to be more accurately mapped down to the port.
 
+- Ethernet switch by Chassis ID. Each network switch is stamped with a Chassis ID that is used to identify a specific switch on a network.
+
 - Subnet. Not tied to any physical equipment address, this is the network address the user has. Unlike mapped subnets in the Teams Network topology, The Location Information Service (LIS) doesn’t maintain a list of Networks and Subnet masks, it relies on the NetworkID of the subnet.
+
+Microsoft Teams utilizes the following flowchart of determining a user's network location:
+
+  ![Flowchart of How Microsoft Teams utilizes the network data of determining a user to determine their location.](./Linked_Image_Files/M02_L02_E04_T04_01.png)
 
 Perform the following steps.
 
@@ -469,7 +484,7 @@ Perform the following steps.
 
 1. Leave IPv4 Selected for **IP Version**.
 
-1. Enter the Bellevue Subnet network ID, since our Bellevue Office subnet is 10.10.20.0/24, the network ID is **10.10.20.0**.
+1. Enter the Bellevue Subnet network ID, since our Bellevue Office subnet is 10.10.10.0/24, the network ID is **10.10.10.0**. Additionally also add **192.168.0.0** for a later task.
 
 1. Enter **Bellevue Subnet** as the **Description**.
 
@@ -834,8 +849,6 @@ Contoso does a lot of work with companies in New York and would prefer a New Yor
 1. Navigate to **Meetings** on the left menu then **Conference bridges**.
 
 1. You will see all the conference bridge numbers listed; one number will have (Default) beside it. That is the current default.
-
-1. Select Location in the top table menu to sort the Locations in the table alphabetically, scroll down and choose any one of the bridges in the US and select the **Set as default** on the top menu.
 
 1. Leave the browser window open at the end of the task.
 
