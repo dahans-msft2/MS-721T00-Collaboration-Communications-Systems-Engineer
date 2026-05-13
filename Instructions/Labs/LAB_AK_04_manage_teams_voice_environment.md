@@ -96,9 +96,16 @@ In this task, an existing user who isn’t enabled for voice services must be en
     Set-CsPhoneNumberAssignment -Identity NestorW@lab<LAB NUMBER>.o365ready.com -PhoneNumber "+14255551122" -PhoneNumberType DirectRouting
     ```
 
+1. Now grant the same voice routing policy to **Isaiah Langer** and assign Isaiah a Direct Routing phone number. (In a production environment without the current tenant restrictions, you would order Isaiah a Calling Plan number through the Teams admin center. Because that's unavailable in this lab tenant, you'll use Direct Routing through the SBC deployed in Lab 3 instead.)
+
+    ```powershell
+    Grant-CsOnlineVoiceRoutingPolicy -Identity IsaiahL@lab<LAB NUMBER>.o365ready.com -PolicyName "NA-National"
+    Set-CsPhoneNumberAssignment -Identity IsaiahL@lab<LAB NUMBER>.o365ready.com -PhoneNumber "+14255551133" -PhoneNumberType DirectRouting
+    ```
+
 1. Close the PowerShell Window at the end of the task.
 
-Nestor is now configured to use Direct Routing.
+Nestor and Isaiah are now configured to use Direct Routing.
 
 ### Task 3 - Configure call delegation
 
@@ -152,7 +159,7 @@ In this task, you validate audio conferencing is enabled for Isaiah Langer and c
 
 1. Check if **Audio Conferencing** is switched to **On**.
 
-1. Select the **Toll number** dropdown and change it to **+1 689 206 9333 Orlando, United States**. (**Note**: That particular number might not be available.  Choose another number as appropriate.)
+1. Select the **Toll number** dropdown and change it to **+1 689 206 9333 Orlando, United States**. If that particular number isn't available, choose any other available toll number from the dropdown.
 
 1. Select **Apply**.
 
@@ -522,16 +529,13 @@ As devices are provisioned or joined, they will be displayed in the **Devices** 
 
 After applying a tag to devices, you can then use the **Search** box in the device list to choose **Select what you want to search by**, and then choose **Tags**. Enter the tag you’ve assigned to devices, and these devices will be displayed in the search results.
 
-## Exercise 4 (See NOTE): Monitor and troubleshoot Teams Phone
-
-> [!NOTE]
-> Tasks 2, 3, 5, 6, &amp; 7 are unable to be completed at this time. Due to a new verification requirement to meet compliance standards, ordering service and subscriber numbers for Microsoft Teams Phone is not possible in our tenant environment, which means we are unable to test and review live calls.  We hope to mitigate this issue in the future, but in the meantime, use the steps below as a general reference and follow along as practice.
+## Exercise 4: Monitor and troubleshoot Teams Phone
 
 ### Exercise Duration
 
   - **Estimated Time to complete**: 120 minutes
 
-In this exercise, you will perform exercises to help troubleshoot specific issues and monitor call use and quality.
+In this exercise, you will perform exercises to help troubleshoot specific issues and monitor call use and quality. All test calls in this exercise route through the Session Border Controller deployed in Lab 3.
 
 ### Task 1 - Run self-help diagnostics tool in Microsoft 365 admin center
 
@@ -561,7 +565,7 @@ You have successfully used the Microsoft 365 self-help diagnostics to confirm th
 
 In this lab, we are going to create and then break a dial plan rule and check Call Analytics to see the issue.
 
-Firstly, we will create a dial plan rule, in this scenario, the organization would like the short code 7786 to translate to +1-877-696-7786.
+Firstly, we will create a dial plan rule. In this scenario, the organization would like the short code 0001 to translate to the lab test number +1-425-555-0001 that's reachable through the SBC deployed in Lab 3.
 
 1. You are still signed in to **MS721-CLIENT01** as “Admin” and signed into the **Microsoft 365 admin center** as **MOD Administrator**.
 
@@ -573,21 +577,21 @@ Firstly, we will create a dial plan rule, in this scenario, the organization wou
     
     1. Under Normalization rules select **Add** to get to the add new rule dialogue.
     
-    1. For **Name** enter **Converts 7786 to US support number**.
+    1. For **Name** enter **Converts 0001 to lab test number**.
     
-    1. For **Description** enter **Converts 7786 to US support number**.
+    1. For **Description** enter **Converts 0001 to lab test number**.
     
     1. Ensure **Basic** rule is selected, it should be by default.
     
-    1. Tick **The number dialed begins with** and enter **7786**.
+    1. Tick **The number dialed begins with** and enter **0001**.
     
     1. Tick **The length of the number being dialed is** and enter **4**.
     
     1. Ensure **Exactly** is selected for length of number to be dialed.
     
-    1. Tick **Add this number to the beginning** and enter **+1877696**.
+    1. Tick **Add this number to the beginning** and enter **+1425555**.
     
-    1. Test the rule by entering **7786** and pressing Test. The output should be **+18776967786**, if the output is correct select **Save**.
+    1. Test the rule by entering **0001** and pressing Test. The output should be **+14255550001**, if the output is correct select **Save**.
     
     1. In the list of normalization rules, select the rule you just created and choose **Move up** from the action menu at the top of the table.
     
@@ -615,13 +619,13 @@ If the desktop client fails to update or loops, you can use the Teams web client
 
 1. Select the calls button on the left rail.
 
-1. Dial **7786** and press call.
+1. Dial **0001** and press call.
 
 1. If your lab machine prompted you to use your microphone select **Allow**.
 
 1. If you are prompted by Windows Defender Firewall for Microsoft Teams select **Allow Access**.
 
-1. Note that the number has been translated to +18776967786 and the call connects. It is a contact center that will stay connected for around a minute and then automatically hang up.
+1. Note that the number has been translated to +14255550001 and the call connects through the SBC.
 
 1. Press the red hang-up button to disconnect the call.
 
@@ -635,15 +639,15 @@ Now we have proven the rule works, we will break the rule and confirm the rule.
 
 1. Select the **Global (org wide default)** dial plan.
 
-1. Select the **Converts 7786 to US support number** rule to edit it.
+1. Select the **Converts 0001 to lab test number** rule to edit it.
 
 1. Note it will be converted to an advanced regular expression now.
 
-1. In the field the number dialed matches this regular expression, it will read **^(7786)$**.
+1. In the field the number dialed matches this regular expression, it will read **^(0001)$**.
 
-1. Remove the first 7 to now read, **^(786)$**.
+1. Remove the first 0 to now read, **^(001)$**.
 
-1. Test the rule by entering 7786 and pressing Test. The output of the translated number isn't an E.164 phone number.
+1. Test the rule by entering 0001 and pressing Test. The output of the translated number isn't an E.164 phone number.
 
 1. Select **Save**.
 
@@ -677,7 +681,7 @@ Now we have broken our dial plan, we will sign into Teams again and prove it is 
 
 1. Once signed in, Select the calls button on the left rail.
 
-1. Dial 7786 and press call.
+1. Dial 0001 and press call.
 
 1. If your lab machine prompted you to use your microphone select **Allow**.
 
@@ -701,13 +705,13 @@ Users can check on the network performance of their calls live during the call. 
 
 1. Select the calls button on the left rail.
 
-1. Dial +1-877-696-7786 and press call.
+1. Dial +1-425-555-0001 and press call.
 
 1. If your lab machine prompted you to use your microphone select **allow**.
 
 1. If you are prompted by Windows Defender Firewall for Microsoft Teams select **Allow Access**.
 
-1. The call should establish and you should hear a Microsoft support virtual agent.
+1. The call should establish through the SBC.
 
 1. While on the call, press the ellipsis (three dots) in the top right of the Teams client and select **Settings**, then **Call health**.
 

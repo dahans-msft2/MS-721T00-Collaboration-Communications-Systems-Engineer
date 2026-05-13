@@ -3,14 +3,14 @@ lab:
   title: 'Lab 02: Configure your environment for Teams Voice Usage'
   type: Answer Key
   module: 'Learning Path 01: Plan and design Teams collaboration communications systems'
-  description: This lab focuses on preparing the Contoso environment for Microsoft Teams Phone by evaluating network readiness, configuring network topology, emergency calling, voice policies, and assigning phone numbers. The scenario covers end-to-end setup for Teams Voice, including call queues, auto attendants, and audio conferencing.
-  duration: 155 minutes
+  description: This lab focuses on preparing the Contoso environment for Microsoft Teams Phone by evaluating network readiness, configuring network topology, emergency calling, and voice policies. The scenario covers the foundation for Teams Voice that subsequent labs build on through Direct Routing.
+  duration: 115 minutes
   level: 300
   islab: true
 ---
 
 > **Abstract:**  
-> This lab focuses on preparing the Contoso environment for Microsoft Teams Phone by evaluating network readiness, configuring network topology, emergency calling, voice policies, and assigning phone numbers. The scenario covers end-to-end setup for Teams Voice, including call queues, auto attendants, and audio conferencing.
+> This lab focuses on preparing the Contoso environment for Microsoft Teams Phone by evaluating network readiness, configuring network topology, emergency calling, and voice policies. The scenario covers the foundation for Teams Voice that subsequent labs build on through Direct Routing.
 
 # Lab 02: Configure your environment for Teams Phone
 # Student lab answer key
@@ -25,7 +25,7 @@ Firstly, our administrator wants to ensure the network is capable of running Mic
 
 - Test our network performance with the Teams Network Assessment
 
-Next, we need to configure our tenant ready for acquiring phone numbers and assigning them to users, before we can acquire and assign phone numbers we need to configure our network topology and emergency calling addresses
+Next, we need to configure our tenant for Teams Phone usage. Before phone numbers can be assigned to users, we need to configure our network topology and emergency calling addresses.
 
 - Configure a basic network topology and emergency calling addresses
 
@@ -33,19 +33,16 @@ Voice Policies allow us to configure specific parts of Teams Phone. We require e
 
 - Configure Voice policies to meet Contoso requirements
 
-Now we will acquire and assign phone numbers to a user and perform a test call and configure audio conferencing for our users
+Finally, we will review our default audio conferencing settings.
 
-- Assign licenses and phone numbers to a user for calling
+- Review audio conferencing settings
 
-- Configure audio conferencing
-
-Finally, we will configure Call Queues and Auto Attendants for inbound calls to Contoso
-
-- Configure Call Queues and Auto Attendants 
+> [!NOTE]
+> Direct number ordering through the Teams admin center is currently unavailable in this trial tenant due to a compliance verification requirement. Phone numbers for users and resource accounts are assigned through **Direct Routing** PowerShell in Lab 4 and Lab 5 after the Session Border Controller (SBC) is deployed in Lab 3. The Auto Attendant and Call Queue scenarios used elsewhere in the course are configured in Lab 4 once Direct Routing is in place.
 
 ## Lab Setup
 
-  - **Estimated Time to complete**: 155 minutes
+  - **Estimated Time to complete**: 115 minutes
 
 ## Instructions
 
@@ -414,7 +411,7 @@ You have successfully added the public IP that clients will appear from for the 
 
 ### Task 3 - Add an emergency address
 
-In this task, you will create an emergency location. This is needed before you can order calling plan numbers.
+In this task, you will create an emergency location. This is needed before you can assign phone numbers to users for Teams Phone and is also required for dynamic emergency calling configuration in later labs.
 
 1. From the last task, you are still signed in to MS721-CLIENT01 as “Admin” and have the **Microsoft Teams Admin Center** open as **Allan Deyoung**.
 
@@ -703,159 +700,17 @@ There is a persistent nuisance caller calling users in the Bellevue office and w
 
 You have successfully blocked all inbound calls from 1 (412) 555-1111 via PowerShell to end the unwanted calls from that number. 
 
-## Exercise 5 (See NOTE): Prepare for calling
-
-> [!NOTE]
-> This exercise is unable to be completed at this time. Due to a new verification requirement to meet compliance standards, ordering service and subscriber numbers for Microsoft Teams Phone is not possible in our tenant environment.  We hope to mitigate this issue in the future, but in the meantime, use the steps below as a general reference.  There is also a simulated demo experience here: [Microsoft Teams Phone - IT Pro](https://regale.cloud/Microsoft/viewer/2716/teams-phone-it-pro-guided-simulation-dec-2023-update/index.html#/0/0)
+## Exercise 5: Review audio conferencing settings
 
 ### Exercise Duration
 
-  - **Estimated Time to complete**: 20 minutes
+  - **Estimated Time to complete**: 5 minutes
 
-In this exercise, you will set up a user for Teams Phone with a Microsoft Calling plan. 
+In this exercise, you will review the default Microsoft PSTN audio conferencing settings for the tenant.
 
-### Task 1 - Order a service number
+### Task 1 - Review the default Audio Conferencing Bridge
 
-In this task, you will order a phone number in the Teams Admin Center to assign to an auto attendant in a future lab.
-
-1. You are still signed in to MS721-CLIENT01 as “Admin” and in the **Microsoft Teams admin center** as **Allan Deyoung**
-
-1. In the **Microsoft Teams admin center**, select **Voice** on the left menu, then select **Phone numbers**.
-
-1. Under **Numbers**, select **Add**.
-
-1. At the top of the page, enter a name for your order **New service number for Sales Group**.
-
-1. For **description** enter **New service number for Shared Calling users in the Sales Group**.
-
-1. Select **United States** as **Country or region**.
-
-1. For Number Type, select **Auto Attendant (Toll)**.
-
-1. For Operator, select **Microsoft**.
-
-1. The Quantity field will now appear, enter **1**.
-
-1. For **Search for new numbers** select **Search by area code** and enter **206**.
-
-> [!NOTE]
-> The phone numbers that are available in different regions will vary and **206** numbers may not be available. Try other area codes in the US and Canada, such as **308** in Nebraska.  The area code of the phone number does not need to match the emergency address location.
-
-1. When all fields are complete, select **Next**. Microsoft will now reserve phone numbers in the chosen area code. If there are no numbers available for your selected State/City combination, select another State/City and try again.
-
-1. Verify the area code and phone number, then select **Place Order**.
-
-1. You will see “Thank you, your order has been placed!”, select **Finish**.
-
-1. In the voice, under **phone numbers**, you should see your number. Note in some cases this may take 5-10 minutes to appear.
-
-1. Leave the browser window open at the end of the task.
-
-You have successfully ordered an auto attendant service number through the Teams admin center.
-
-### Task 2 - Order a user (subscriber) number
-
-In this task, you will order a phone number in the Teams Admin Center to assign to Isaiah Langer.
-
-1. You are still signed in to MS721-CLIENT01 as “Admin” and in the **Microsoft Teams admin center** as **Allan Deyoung**
-
-1. In the **Microsoft Teams admin center**, select **Voice** on the left menu, then select **Phone numbers**.
-
-1. Under **Numbers**, select **Add**.
-
-1. At the top of the page, enter a name for your order **New user (subscriber) number for Isaiah Langer**.
-
-1. For **description** enter **New user (subscriber) number for Isaiah Langer**.
-
-1. Select **United States** as **Country or region**.
-
-1. For Number Type, select **User (subscriber)**.
-
-1. For Operator, select **Microsoft**.
-
-1. The Quantity field will now appear, enter **1**.
-
-1. For **Search for new numbers** select **Search by area code** and enter **206**.
-
-> [!NOTE]
-> The phone numbers that are available in different regions will vary and **206** numbers may not be available. Try other area codes in the US and Canada, such as **308** in Nebraska.  The area code of the phone number does not need to match the emergency address location.
-
-1. When all fields are complete, select **Next**. Microsoft will now reserve phone numbers in the chosen area code. If there are no numbers available for your selected State/City combination, select another State/City and try again.
-
-1. Verify the area code and phone number, then select **Place Order**.
-
-1. You will see “Thank you, your order has been placed!”, select **Finish**.
-
-1. In the voice, under **phone numbers**, you should see your number. Note in some cases this may take 5-10 minutes to appear.
-
-1. Leave the browser window open at the end of the task.
-
-You have successfully ordered a User (subscriber) phone number through the Teams admin center.
-
-### Task 3 - Assign a phone number to Isaiah Langer
-
-Before a user can make calls, they need a phone number. In this task, you will assign the phone number you ordered earlier to Isaiah Langer.
-
-1. You are still signed in to MS721-CLIENT01 as “Admin” and have the **Microsoft Teams admin center** open as **Allan Deyoung**.
-
-1. Select **Voice** and the **Phone numbers** tab.
-
-1. Select the new user phone number we ordered in Task 2 for Isaiah Langer.
-
-1. Select **Edit** from the top table menu.
-
-1. Enter **Isaiah Langer** in the **Assigned To** field, then select **Assign**.
-
-1. Under **Emergency location**, select **Search by city**, and then enter **Bellevue** and select the address you verified earlier.
-
-1. Select **Apply** and close any additional windows.
-
-1. The phone number is now assigned to Isaiah.
-
-You have successfully assigned a phone number to Isaiah Langer.
-
-### Task 4 - Test phone calls
-
-Now Isaiah has a calling plan and phone number and we will perform a test call to validate the functionality of the configuration.
-
-1. Switch to **MS721-CLIENT02** and sign in as **Admin** with the credentials provided to you.
-
-1. Open the Edge browser and navigate to [https://teams.microsoft.com](https://teams.microsoft.com/). Sign in with the credentials of Isaiah.
-
-1. Log in as Isaiah Langer (*IsaiahL@<TenantName>.onmicrosoft.com*) using the password you assigned in the previous lab. When a **Save password** dialog is displayed, select **Never**.
-
-1. When a **Stay signed in?** dialog is displayed, select **Yes**.
-
-1. Close any popup or welcome messages until you are at the Teams main screen..
-
-1. Select the **Calls** button on the left rail.
-
-1. Dial **+18776967786** and press call.
-
-1. If your lab machine prompted, you to use your microphone select **Allow**.
-
-1. If you are prompted by Windows Defender Firewall for Microsoft Teams select **Allow Access**
-
-1. Note the call connects.
-
-1. Press the red hang-up button to disconnect the call.
-
-Now we confirmed that Isaiah can make a PSTN call in Teams.
-
-## Exercise 6 (See NOTE): Configure audio conferencing settings
-
-> [!NOTE]
-> This exercise is unable to be completed at this time. Due to a new verification requirement to meet compliance standards, ordering service and subscriber numbers for Microsoft Teams Phone is not possible in our tenant environment.  We hope to mitigate this issue in the future, but in the meantime, use the steps below as a general reference.  There is also a simulated demo experience here: [Microsoft Teams Phone - IT Pro](https://regale.cloud/Microsoft/viewer/2716/teams-phone-it-pro-guided-simulation-dec-2023-update/index.html#/0/0)
-
-### Exercise Duration
-
-  - **Estimated Time to complete**: 10 minutes
-
-In this exercise, you will configure Microsoft PSTN audio conferencing to meet the organization's requirements.
-
-### Task 1 - Set a default Audio Conferencing Bridge
-
-The default phone number of your conference bridge defines the caller ID that will be used when an outbound call is placed by a participant or the organizer from within a meeting. E.g., they are dialing out to either connect themselves via PSTN or to “dial in” another participant on PSTN.
+The default phone number of your conference bridge defines the caller ID that will be used when an outbound call is placed by a participant or the organizer from within a meeting. For example, when they're dialing out to either connect themselves via PSTN or to "dial in" another participant on PSTN.
 
 Contoso does a lot of work with companies in New York and would prefer a New York number as their default audio conference bridge.
 
@@ -871,61 +726,10 @@ Contoso does a lot of work with companies in New York and would prefer a New Yor
 
 1. Leave the browser window open at the end of the task.
 
-You have successfully set a New York City, United States number as the default audio conference number.
+You have successfully reviewed the audio conference bridge numbers available to the tenant.
 
-### Task 2 – Order a new Conference Bridge Number
-
-Contoso would like to have a conference number for their customers to dial specifically in the United States 920 area code. In this task, we will order that number and add it to our tenant.
-
-In this task, you will order a new Dedicated conference bridge toll number. This will be a dedicated number for people to dial into Contoso conferences.
-
-1. You are still signed in to MS721-CLIENT01 as “Admin” and have the **Microsoft Teams admin center** open as **Allan Deyoung**.
-
-1. Navigate and select **Voice** on the left menu, then select **Phone numbers**.
-
-1. Under **Phone numbers**, select the **Add**.
-
-1. At the top of the page, enter a name for your order **Dedicated conference number**.
-
-1. For **description** enter **Dedicated conference number**.
-
-1. Select United States as **Country or region**.
-
-1. For **Number Type**, select **Dedicated conference bridge (Toll)**.
-
-1. Select **Microsoft** in the Operator field, the Quantity field will now appear, enter **1**.
-
-1. For **Search for new numbers** select **search by area code** and enter **920**.
-
-1. When all fields are complete, select **Next**, Microsoft will now reserve and present some numbers for you. If you see “We can't find any phone numbers for the area code you entered.” Try another US area code for this exercise. If you really did want a specific city, you would contact the PSTN service desk to find out if/when there is availability.
-
-1. You should see 1 reserved number, select **Place Order**.
-
-1. You will see “Thank you, your order has been placed!”, select **Finish**.
-
-1. In the voice, under **Phone numbers**, you should see your number. Note in some cases this may take 5-10 minutes to appear.
-
-1. Leave the browser window open at the end of the task.
-
-You have successfully ordered a new dedicated conference toll phone number through the Teams admin center.
-
-### Task 3 - Configure a New Conference Bridge Number
-
-1. You are still signed in to MS721-CLIENT01 as “Admin” and have the **Microsoft Teams admin center** open as **Allan Deyoung**.
-
-1. In the left navigation menu select **Meetings** and **Conference bridges**. 
-
-1. Select **Add** and select **Toll number**. 
-
-1. Select the new conference number you acquired in task 2 from the drop-down list of Toll numbers.
-
-1. Select **Apply**.
-
-1. You will be back at the list of conference bridge numbers, sort the list by **Type** to confirm you have a new Dedicated conference bridge. It may take a few minutes for the bridge to appear. You can refresh the page by moving to a different page in the Teams Admin Center and then returning to the **Conference bridges** page.
-
-1. Leave the browser window open at the end of the task.
-
-You have successfully set up a new dedicated conference bridge number.
+> [!NOTE]
+> In a production environment, you can also acquire dedicated conference bridge numbers in specific area codes through the Teams admin center. Because direct number ordering is unavailable in this trial tenant, that step is omitted from the lab. For production guidance, see [Phone numbers for Audio Conferencing in Microsoft Teams](https://learn.microsoft.com/microsoftteams/phone-numbers-for-audio-conferencing-in-teams).
 
 ## Next Steps
 
