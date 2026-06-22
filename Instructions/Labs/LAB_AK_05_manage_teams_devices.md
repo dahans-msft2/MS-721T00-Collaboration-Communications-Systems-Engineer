@@ -31,16 +31,13 @@ As part of the expanding business, the organization has began deploying various 
 > Throughout this lab, you will use PowerShell cmdlets that must be customized for your specific lab configuration. In the instructions below, when you see &lt;LAB NUMBER&gt; in a PowerShell command, you should replace it with the LAB NUMBER obtained in Lab 3, Exercise 1, Task 2.
 > You will also see &lt;TENANT NAME&GT; used in PowerShell commands and should replace it with the Microsoft 365 TENANT NAME (e.g. M365x01234567) for your Microsoft 365 account.
 
-## Exercise 1 (See NOTE): Configuring Teams Shared Device and Room Resource Accounts
-
-> [!NOTE]
-> Tasks 4 &amp; 5 are unable to be completed at this time. Due to a new verification requirement to meet compliance standards, ordering service and subscriber numbers for Microsoft Teams Phone is not possible in our tenant environment, which means we are unable to test and review live calls.  We hope to mitigate this issue in the future, but in the meantime, use the steps below as a general reference and follow along as practice.
+## Exercise 1: Configuring Teams Shared Device and Room Resource Accounts
 
 ### Exercise Duration
 
   - **Estimated Time to complete**: 30 minutes
 
-In this exercise, you will configure accounts for Teams Shared Devices and Rooms.
+In this exercise, you will configure accounts for Teams Shared Devices and Rooms. Because direct number ordering through the Teams admin center isn't available in this trial tenant, phone numbers are assigned to these resource accounts through **Direct Routing** PowerShell using the Session Border Controller deployed in Lab 3.
 
 ### Task 1 - Create a resource account for Teams Shared Devices (Common Area Phones)
 
@@ -72,9 +69,9 @@ In this task, you will sign into the Microsoft 365 admin center and will create 
 
     ![A screenshot showing the basics of user setup.](Linked_Image_Files/M05_L05_E01_T01_01.png)
 
-1. On the licensing page, assign both a **Microsoft Teams Rooms Pro** and a **Microsoft Teams Domestic Calling Plan** license to the user account, and then click **Next.**
+1. On the licensing page, assign a **Microsoft Teams Rooms Pro** license to the user account, and then click **Next.**
 
-    > NOTE: The lab environment does not have the proper **Teams Shared Devices** licensing avaliable. For what we need, this license will do for lab purposes.
+    > NOTE: The lab environment does not have the proper **Teams Shared Devices** licensing avaliable. For what we need, the Rooms Pro license will do for lab purposes. A Calling Plan license isn't required because this account will receive a phone number through **Direct Routing** in a later task.
 
 1. Continue clicking **Next** until you get the username and password presented to you. Write these down for future use. Keep the browser open for the next task.
 
@@ -104,7 +101,7 @@ In this task, you will sign into the Microsoft 365 admin center and will create 
 
 1. In the left navigation, select **Users**, select **Active Users**, and then select the **CONF_Room1** account. 
 
-1. Select **Licenses and Apps** on the user card, assign both a **Microsoft Teams Rooms Pro** and a **Microsoft Teams Domestic Calling Plan** license to the user account, and then click **Save changes.**
+1. Select **Licenses and Apps** on the user card, assign a **Microsoft Teams Rooms Pro** license to the user account, and then click **Save changes.** A Calling Plan license isn't required because the account will receive a phone number through **Direct Routing** in a later task.
 
 1. While still in the user card, select **Reset Password** and set the password to the **User password** for your Microsoft 365 account, then close the user card.
 
@@ -153,65 +150,42 @@ In this task, you will sign into the Microsoft Graph PowerShell Module and disab
 	```
 The accounts anow have password expiration disabled and are ready to have additional configurations applied.
 
-### Task 4 - Acquire phone numbers to assign to the resource accounts
+### Task 4 - Assign phone numbers to the resource accounts through Direct Routing
 
-In this task, you will sign into the Microsoft Teams admin center and will aquire two phone numbers for each resource account.
+In this task, you will use PowerShell to assign a Direct Routing phone number to each resource account. The numbers route through the SBC you deployed in Lab 3. (In a production environment without the current tenant restrictions, you would order Calling Plan numbers through the Teams admin center and assign them in the **Phone numbers** page. Because that's unavailable in this lab tenant, Direct Routing is used instead.)
 
-1. You are still signed in to MS721-CLIENT01 as “Admin” and in the **Microsoft Teams admin center** as **MOD Administrator**
+1. You are still signed in to MS721-CLIENT01 as **Admin** with the password provided to you.
 
-1. In the **Microsoft Teams admin center**, select **Voice** on the left menu, then select **Phone numbers**.
+1. Open Windows PowerShell and connect to Microsoft Teams. When prompted for credentials, sign in as **Allan Deyoung**:
 
-1. Under **Numbers**, select **Add**.
+    ```powershell
+    Connect-MicrosoftTeams
+    ```
 
-1. At the top of the page, enter a name for your order **Numbers for Resource Accounts**.
+1. Grant the `NA-National` voice routing policy you created in Lab 3 to both resource accounts so they can route calls through the SBC. Replace `<LAB Domain>` with your lab domain:
 
-1. For **description** enter **Numbers for Resource Accounts**.
+    ```powershell
+    Grant-CsOnlineVoiceRoutingPolicy -Identity CAP_Reception@<LAB Domain>.onmicrosoft.com -PolicyName "NA-National"
+    Grant-CsOnlineVoiceRoutingPolicy -Identity CONF_Room1@<LAB Domain>.onmicrosoft.com -PolicyName "NA-National"
+    ```
 
-1. Select **United States** as **Country or region**.
+1. Assign a Direct Routing phone number to each resource account:
 
-1. For Number Type, select **User (subscriber)**.
+    ```powershell
+    Set-CsPhoneNumberAssignment -Identity CAP_Reception@<LAB Domain>.onmicrosoft.com -PhoneNumber "+14255551201" -PhoneNumberType DirectRouting
+    Set-CsPhoneNumberAssignment -Identity CONF_Room1@<LAB Domain>.onmicrosoft.com -PhoneNumber "+14255551202" -PhoneNumberType DirectRouting
+    ```
 
-1. For Operator, select **Microsoft**.
+1. Confirm the assignments by running:
 
-1. The Quantity field will now appear, enter **2**.
+    ```powershell
+    Get-CsOnlineUser CAP_Reception | Select DisplayName, LineUri, OnlineVoiceRoutingPolicy
+    Get-CsOnlineUser CONF_Room1 | Select DisplayName, LineUri, OnlineVoiceRoutingPolicy
+    ```
 
-1. For **Search for new numbers** select **Search by area code** and enter **206**.
+1. Leave the PowerShell window open at the end of the task.
 
-    > NOTE: The phone numbers that are available in different regions will vary and **206** numbers may not be available. Try other area codes in the US and Canada, such as **308** in Nebraska.  The area code of the phone number does not need to match the emergency address location.
-
-1. When all fields are complete, select **Next**. Microsoft will now reserve phone numbers in the chosen area code. If there are no numbers available for your selected State/City combination, select another State/City and try again.
-
-1. Verify the area code and phone number, then select **Place Order**.
-
-1. You will see “Thank you, your order has been placed!”, select **Finish**.
-
-1. In the voice, under **phone numbers**, you should see your number. Note in some cases this may take 5-10 minutes to appear.
-
-1. Leave the browser window open at the end of the task.
-
-You have successfully ordered a User (subscriber) phone number through the Teams admin center.
-
-### Task 5 - Assign a phone number to each resource account
-
-In this task, you will sign into the Microsoft Teams admin center and will assign a phone number to each previously created account.
-
-1. You are still signed in to MS721-CLIENT01 as “Admin” and have the **Microsoft Teams admin center** open as **MOD Administrator**.
-
-1. Select **Voice** and the **Phone numbers** tab.
-
-1. Select the new user phone number we ordered in Task 2 for the room accounts.
-
-1. Select **Edit** from the top table menu.
-
-1. Enter **CAP_Reception** in the **Assigned To** field, then select **Assign**.
-
-1. Under **Emergency location**, select **Search by city**, and then enter **Bellevue** and select the address you verified earlier.
-
-1. Select **Apply**, then repeat for **CONF_Room1**, and then close any additional windows.
-
-1. The phone number is now assigned to the accounts.
-
-You have successfully assigned a phone number to the resource accounts.
+You have successfully assigned Direct Routing phone numbers to the resource accounts.
 
 ## Exercise 2: Deploy Microsoft Teams Common Area Phones
 

@@ -105,6 +105,9 @@ You have successfully signed into your test clients and reviewed the overall num
 
 As an admin, you can assign the Teams Domestic Calling Plan license that gives users the right to be assigned a phone number and make and receive PSTN calls. In this task, you will activate the **Teams Domestic Calling Plan license** for five users. All users already have an E5 license, so all they need is a calling plan license.
 
+> [!NOTE]
+> Direct number ordering through the Teams admin center is currently unavailable in this trial tenant due to a compliance verification requirement. The Calling Plan license is still assigned here so the license inventory is staged correctly, but later labs (Lab 3 onward) assign phone numbers to users and resource accounts via **Direct Routing** through the lab's Session Border Controller (SBC) instead of through a Microsoft Calling Plan.
+
 1. You are still signed in to MS721-CLIENT01 as **Admin** and in the **Microsoft 365 admin center** as **MOD Administrator**.
 
 1. On the Microsoft 365 admin center page, in the left navigation, select **Users**, then **Active users**.
@@ -130,7 +133,7 @@ As an admin, you can assign the Teams Domestic Calling Plan license that gives u
 
 1. Close the browser window at the end of the task.
 
-You have successfully assigned the licenses to five users and activated Teams Premium features for these accounts. You will continue with additional tasks for assigning phone numbers in a later exercise. 
+You have successfully assigned the licenses to five users and activated Teams Premium features for these accounts. Because direct number ordering isn't available in this trial tenant, phone numbers are assigned through Direct Routing PowerShell in later labs rather than through the Teams admin center.
 
 ## Exercise 2: Setup PowerShell for Microsoft Teams administration
 
