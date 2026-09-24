@@ -209,9 +209,9 @@ In this task, you will verify your custom domain so you can work with it and ass
 
 You have successfully verified the custom domain created from the script is set as the default domain for your tenant, which is important for later tasks.
 
-### Task 6 - Assign the custom lab domain to Megan Bowen
+### Task 6 - Assign the custom lab domain to Megan Bowen, Nestor Wilke, and Isaiah Langer
 
-In the following task, you will add the custom domain to Megan Bowen.
+In the following task, you will add the custom domain to Megan Bowen, Nestor Wilke, and Isaiah Langer.
 
 1. You are still on MS721-CLIENT01 where you are still signed in as “Admin”, and you are still in the **Microsoft 365 admin center** as **MOD Administrator**.
 
@@ -225,11 +225,11 @@ In the following task, you will add the custom domain to Megan Bowen.
 
 1. Select **Done**, then select **Save changes**.
 
-1. Repeat steps 3-6 with user **Nestor Wilke**.
+1. Repeat steps 3–6 for **Nestor Wilke** and **Isaiah Langer**.
 
 1. Leave the browser open for the next task.
 
-You have successfully added the custom domain to Megan Bowen and Nestor Wilke.
+You have successfully added the custom domain to Megan Bowen, Nestor Wilke, and Isaiah Langer.
 
 ## Exercise 2: Deploy the session border controller
 
@@ -369,7 +369,7 @@ In the following task you will retrieve the public IP address of the SBC and rou
 
 	- **Password:** *Enter the local Administrator password from the _“Resource”_ section on the right side of the lab window. _DO NOT_ enter the MOD Administrator's account password.*
 
-1. Once the module is installed you will see the command prompt again.
+1. After the connection is established, the command prompt appears again.
 
 1. Enter and modify the following cmdlet with your **LAB NUMBER** and **Public SBC IP Address** to configure the DNS Record for the SBC (**Note**: the machine name should be stay as MS720-RRAS01, despite the course being MS-721):
 
@@ -514,14 +514,25 @@ In the following task, you will create your first voice routing policy and PSTN 
 
     ```
 
-1. Run the New-CsOnlineVoiceRoute command - Creates a new online voice route. Online voice routes contain instructions that tell Microsoft Teams how to route calls from Office 365 users to phone numbers on the public switched telephone network (PSTN) or a private branch exchange (PBX):
+1. Run the following `New-CsOnlineVoiceRoute` command to create the **NA-Emergency** voice route:
 
     ```powershell
 	New-CsOnlineVoiceRoute -Identity "NA-Emergency" -NumberPattern '^\+?(911|933)$' -OnlinePstnGatewayList sbc01.lab<LAB NUMBER>.o365ready.com -Priority 1 -OnlinePstnUsages 'NA-Emergency'
-	New-CsOnlineVoiceRoute -Identity "NA-Service" -NumberPattern '^\+?([2-9]\d{2})$' -OnlinePstnGatewayList sbc01.lab<LAB NUMBER>.o365ready.com -Priority 2 -OnlinePstnUsages 'NA-Service'
-	New-CsOnlineVoiceRoute -Identity "NA-National" -NumberPattern '^\+1[2-9]\d\d[2-9]\d{6}$' -OnlinePstnGatewayList sbc01.lab<LAB NUMBER>.o365ready.com -Priority 3 -OnlinePstnUsages 'NA-National'
-
     ```
+
+1. Run the following `New-CsOnlineVoiceRoute` command to create the **NA-Service** voice route:
+
+    ```powershell
+	New-CsOnlineVoiceRoute -Identity "NA-Service" -NumberPattern '^\+?([2-9]\d{2})$' -OnlinePstnGatewayList sbc01.lab<LAB NUMBER>.o365ready.com -Priority 2 -OnlinePstnUsages 'NA-Service'
+    ```
+
+1. Run the following `New-CsOnlineVoiceRoute` command to create the **NA-National** voice route:
+
+    ```powershell
+	New-CsOnlineVoiceRoute -Identity "NA-National" -NumberPattern '^\+1[2-9]\d\d[2-9]\d{6}$' -OnlinePstnGatewayList sbc01.lab<LAB NUMBER>.o365ready.com -Priority 3 -OnlinePstnUsages 'NA-National'
+    ```
+
+    Online voice routes tell Microsoft Teams how to route calls from Microsoft 365 users to phone numbers on the public switched telephone network (PSTN) or a private branch exchange (PBX).
 
 1. Run the Get-CSOnlineVoiceRoute command, this command returns information about the online voice routes configured for use in your tenant. Online voice routes contain instructions that tell Microsoft Teams how to route calls from Office 365 users to phone numbers on the public switched telephone network (PSTN) or a private branch exchange (PBX):
 

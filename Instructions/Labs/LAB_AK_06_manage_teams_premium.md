@@ -183,7 +183,7 @@ In this exercise, you will test the Queues app.
 
 In this task, you will sign into the Microsoft Teams client and access the Queues App.
 
-1. You are still signed in to MS721-CLIENT02 as “Admin” and signed into Microsoft Teams as **Isaiah Langer**
+1. On MS721-CLIENT02, remain signed in to Windows as **Admin**. In Microsoft Teams, sign out as **Isaiah Langer**, and then sign in as **Megan Bowen**.
 
 1. In the Teams client, click the three dots **...** on the left side app bar and then search & select the app called **Queues.**
 
@@ -193,7 +193,7 @@ In this task, you will sign into the Microsoft Teams client and access the Queue
 
     ![A screenshot showing  the Queues App.](Linked_Image_Files/M06_L06_E02_T01_02.png)
 
-You have successfully accessed the Teams Queues App as a Microsoft Teams Premium user.
+You have successfully accessed the Teams Queues App as Megan Bowen.
 
 ### Task 2 - Modifying Call Queue Parameters from within the Teams client
 

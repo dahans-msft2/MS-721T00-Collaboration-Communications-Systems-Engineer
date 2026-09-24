@@ -302,7 +302,7 @@ You have successfully assigned the call answering for the Call Queue to the Gene
 
 ### Task 4 - Configure a Call Queue to forward to voicemail if busy
 
-By default, if a call to a call queue isn't answered by an agent within the maximum wait time, it will be disconnected. We would like to configure unanswered calls to go to voicemail instead. The voicemail must be an Office 365 Group voicemail.
+By default, if a call to a call queue isn't answered by an agent within the maximum wait time, it will be disconnected. We would like to configure unanswered calls to go to voicemail instead. The voicemail must be a Microsoft 365 group voicemail.
 
 1. You are still signed in to MS721-CLIENT01 as “Admin” and have the **Microsoft Teams admin center** open as **Allan Deyoung**.
 
