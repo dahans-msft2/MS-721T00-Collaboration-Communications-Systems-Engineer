@@ -103,7 +103,7 @@ In this task, you will sign into the Microsoft Teams admin center and create a C
 
       - **Language:** English (United States)
 
-      - **Select** Classic setup
+      - **Select** Advanced setup
 
 	  - **Resource Accounts:** CQ_MainLine@&lt;Lab Domain&gt;.onmicrosoft.com
 
@@ -167,7 +167,7 @@ In this task, you will sign into the Microsoft Teams admin center and assign a v
 
 1. Scroll down to **Select Voice Applications Policy**, select the **Managers** policy created earlier, then click **Apply** and **Confirm.**
 
-    ![A screenshot showing the Voice Application Policy being applied to a user.](Linked_Image_Files/M06_L06_E01_T05_01.png)
+    ![A screenshot showing the Managers voice applications policy and NA-National voice routing policy assigned to Megan Bowen.](Linked_Image_Files/M06_L06_E01_T05_01-v2.png)
 
 You have successfully applied a Voice Application policy to a user.
 

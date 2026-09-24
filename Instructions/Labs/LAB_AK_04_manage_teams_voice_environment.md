@@ -61,9 +61,9 @@ In this task, you will sign into the Microsoft Teams admin center and make chang
 
 The changes are now applied, and a banner will show for calls directed to Isaiah on Allan’s Teams client, allowing them to answer if Isaiah is unable.
 
-### Task 2 - Enable user for Teams Direct Routing
+### Task 2 - Enable users for Teams Direct Routing
 
-In this task, an existing user who isn’t enabled for voice services must be enabled for Direct Routing. We’ll ensure the necessary licenses are assigned, then enable the user for Direct Routing.
+In this task, you enable Nestor Wilke and Isaiah Langer for Direct Routing. Both users already have the required Microsoft Teams and Teams Phone licenses.
 
 1. You are still signed in to MS721-CLIENT01 as “Admin” and signed into the **Microsoft Teams admin center** as **Allan Deyoung**.
 
@@ -360,7 +360,21 @@ In this task, you will create the relevant holiday configuration. Holidays diffe
 
 1. Select **Save**.
 
-You have successfully created a holiday relevant to your area and assigned it to an Auto attendant. 
+1. Return to **Voice**, select **Auto attendants**, and then select **Sales AA**.
+
+1. On the **Holiday call settings** page, select **Add**.
+
+1. Enter **Contoso holiday** for the call flow name.
+
+1. From the **Holiday** dropdown list, select the holiday that you created.
+
+1. Under **Greeting options**, select **Add a greeting message**, and then enter **Contoso is closed for the holiday. Please call back during business hours.**
+
+1. Under **Call routing options**, select **Disconnect**.
+
+1. Select **Next** to continue through the remaining auto attendant settings, and then select **Submit**.
+
+You have successfully created a holiday and assigned its call flow to the Sales AA auto attendant.
 
 ### Task 7 - Import MP4 file for custom music on hold
 
@@ -395,7 +409,7 @@ In this exercise, we will begin the provisioning process for a Teams Phone. We w
 ### Task 1 - Perform remote provisioning of Teams Phones
 
 > [!NOTE]
-> The instructions provided here are for reference only and will not complete successfully.  To view the demonstration of these steps, visit [https://www.microsoft.com/videoplayer/embed/RWN0wC](https://www.microsoft.com/videoplayer/embed/RWN0wC).
+> The instructions provided here are for reference only and will not complete successfully because the lab environment doesn't include a physical Teams phone.
 
 In this task, you will provision a Teams Phone device in the Teams administration center.
 
@@ -581,15 +595,11 @@ Firstly, we will create a dial plan rule. In this scenario, the organization wou
     
     1. For **Description** enter **Converts 0001 to lab test number**.
     
-    1. Ensure **Basic** rule is selected, it should be by default.
-    
-    1. Tick **The number dialed begins with** and enter **0001**.
-    
-    1. Tick **The length of the number being dialed is** and enter **4**.
-    
-    1. Ensure **Exactly** is selected for length of number to be dialed.
-    
-    1. Tick **Add this number to the beginning** and enter **+1425555**.
+    1. Select **Advanced**.
+
+    1. In **If the dialed number matches this regular expression**, enter **^(0001)$**.
+
+    1. In **Then do this**, enter **+14255550001**.
     
     1. Test the rule by entering **0001** and pressing Test. The output should be **+14255550001**, if the output is correct select **Save**.
     
@@ -641,7 +651,7 @@ Now we have proven the rule works, we will break the rule and confirm the rule.
 
 1. Select the **Converts 0001 to lab test number** rule to edit it.
 
-1. Note it will be converted to an advanced regular expression now.
+1. Verify that the rule uses the advanced regular expression **^(0001)$**.
 
 1. In the field the number dialed matches this regular expression, it will read **^(0001)$**.
 

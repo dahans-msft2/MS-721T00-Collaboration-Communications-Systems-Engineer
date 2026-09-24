@@ -442,8 +442,8 @@ In the following task, you will upload the lab certificate you requested earlier
 
 1. To the right of the lab certificate file path, select **Load File**.  
 
-> [!IMPORTANT]
-> After uploading the lab certificate, go back and verify that the **DigiCert Global Root G2** and **DigiCert Global G2 TLS RSA SHA2** trusted certificate authorities are present in the External TLS context. If not, repeat task 7 again.
+    > [!IMPORTANT]
+    > After uploading the lab certificate, go back and verify that the **DigiCert Global Root G2** and **DigiCert Global G2 TLS RSA SHA2** trusted certificate authorities are present in the External TLS context. If not, repeat task 7 again.
 
 1. Review the banner and verify that the certificate was loaded. 
 
@@ -560,7 +560,8 @@ In the following task, you will assign the voice routing policy you created in a
 
     ```
 
-If you receive an error stating that the **Policy "NA-National" is not a user policy. You can assign only a user policy to a specific user**., wait 2-3 minutes and then retry the command. You may need to retry the command several times before it is successful and it may take up to 15 minutes before it becomes available. If the policy is still not updated in the service, you continue to the next lab and return later.
+    > [!NOTE]
+    > If you receive an error stating that the **Policy "NA-National" is not a user policy. You can assign only a user policy to a specific user**, wait 2–3 minutes, and then retry the command. You may need to retry the command several times before it succeeds, and it may take up to 15 minutes before it becomes available. If the policy is still not updated in the service, continue to the next task and return later.
 
 1. Run the Get-CsOnlineUser command, the command returns information about users who have accounts homed on Microsoft Teams:
 
