@@ -53,7 +53,7 @@ In this task, you will sign into the Microsoft Teams admin center and make chang
 
 1. Search for **Allan Deyoung** and select **Add** to include them in the **People list**, then select **Apply**.
 
-1. As Allan would prefer an on-screen notification to show, rather than Teams to ring when Isaiah is unavailable, find **Allan Deyoung** in the Group Call Pickup list. 
+1. As Allan would prefer an on-screen notification to show, rather than Teams to ring when Isaiah is unavailable, find **Allan Deyoung** in the Group Call Pickup list.
 
 1. In the **Notification** column, update the value from **Ring** to **Banner** from the drop-down menu. Then select **Save**.
 
@@ -195,96 +195,90 @@ Outbound calls from Megan Bowen have been restricted.
 
   - **Estimated Time to complete**: 45 minutes
 
-In this exercise, you will gain an understanding of how to configure Call Queues and Auto Attendants. Auto attendant being configured today is for the Sales Team. The Sales Team takes sales queries and then applies them to different parts of the business. On this occasion, Alex Wilber is going to be part of the call queue and later in the module, we will see how to then assign it to a Team.
+In this exercise, you configure a call queue and auto attendant for the Sales team. Isaiah Langer initially answers calls in the queue, and you later connect the queue to the Sales Group team.
 
-### Task 1 - Create a call queue in the Teams admin center
+### Task 1 - Create and license resource accounts
 
-In this task, you will create a call queue. A call queue is a group of agents that you can direct calls to.
+In this task, you create and license one resource account for the Sales call queue and one for the Sales auto attendant.
 
-1. You are still signed in to MS721-CLIENT01 as **Admin** and have the **Microsoft Teams admin center** open as **Allan Deyoung**.
+1. In the **Microsoft Teams admin center**, select **Voice** > **Resource accounts**.
 
-1. Select **Voice** and then select **Call queues**.
+1. Select **Add**, enter the following values, and then select **Save**:
 
-1. Select **Add** and enter the **Sales CQ** as the name
+    - **Display name**: **Sales CQ**
+    - **Username**: **SalesCQ**
+    - **Domain name**: **lab&lt;LAB NUMBER&gt;.o365ready.com**
+    - **Resource account type**: **Call queue**
 
-1. Select **Classic Setup**.
+1. Select **Add** again, enter the following values, and then select **Save**:
 
-1. Under **Resource accounts**, select **Add**.
+    - **Display name**: **Sales AA**
+    - **Username**: **SalesAA**
+    - **Domain name**: **lab&lt;LAB NUMBER&gt;.o365ready.com**
+    - **Resource account type**: **Auto attendant**
 
-1. Enter **Sales** in the search box, when no results are found, select **Add resource account**.
+1. Open the [Microsoft 365 admin center](https://admin.microsoft.com/), then select **Users** > **Active users**.
 
-1. Enter **Sales CQ** as **Display name**
+1. Search for **Sales**, then select the checkboxes next to **Sales CQ** and **Sales AA**.
 
-1. **SalesCQ** as **Username** and select your default domain from the dropdown list.
+1. Select **Manage product licenses** > **Assign more**, select **Microsoft Teams Phone Resource Account**, and then select **Save changes**.
 
-1. **Resource account type** select **Call queue**, then select **Save**.
+1. After the portal confirms that it assigned the license to both accounts, return to the **Microsoft Teams admin center**.
 
-1. Once saved, you will see Sales CQ under accounts to add, select **Add**.
+You have created and licensed the resource accounts required by the Sales call queue and auto attendant.
 
-1. You do not need to assign a Calling ID for this lab.
+### Task 2 - Create a call queue in the Teams admin center
 
-1. Set **Language** to **English (United States)**.
+In this task, you create a call queue and add Isaiah Langer as an agent.
 
-1. Select **Next** to skip **Greeting and music** for now, and go to **Call answering**. 
+1. In the **Microsoft Teams admin center**, select **Voice** > **Call queues**, then select **Add**.
 
-1. Under **Call answering** select **Choose users and group > Add users**, search for Isaiah Langer. and select **Add**.
+1. Enter **Sales CQ** as the name, then select **Advanced setup**.
 
-1. Leave the other options as default.
+1. On the **General info** page, configure the following settings:
 
-1. Scroll down the page and select **Submit**. You will see **Sales CQ** in the call queues list, but with a notice that the Resource account is unlicensed. 
+    - **Name**: **Sales CQ**
+    - **Language**: **English (United States)**
+    - **Resource accounts**: Add **Sales CQ**
 
-    > [!NOTE]
-    > All resource accounts associated with voice applications need a Microsoft Teams Phone Resource Account license to work, but not having one for this lab will not prevent completion. Microsoft 365 does not offer trial licenses for Resource Accounts, and despite being free, administrators are still required to enter billing information.
+    You don't need to assign a calling ID for this lab.
 
-1. Leave the Teams admin center Open for the next steps.
+1. Select **Next** to keep the default greeting and music settings.
 
-You have successfully created the Sales CQ call queue and added Isaiah Langer as an agent.
+1. On the **Call answering** page, select **Choose users and groups** > **Add users**. Search for **Isaiah Langer**, select the user, and then select **Add**.
 
-### Task 2 - Create an auto attendant for the Sales call queue
+1. Leave the remaining options at their default values, then select **Submit**.
 
-Now we will create an auto attendant and direct one of the options to send calls to our Sales CQ call queue. This will ready the Microsoft 365 Auto Attendant to become functional. 
+1. Confirm that **Sales CQ** appears in the call queues list with the **Sales CQ** resource account.
 
-1. You are still signed in to MS721-CLIENT01 as “Admin” and have the **Microsoft Teams admin center** open as **Allan Deyoung**.
+You have created the Sales CQ call queue and added Isaiah Langer as an agent.
 
-1. Under **Voice**, select **Auto Attendants** and select **Add**.
+### Task 3 - Create an auto attendant for the Sales call queue
 
-1. Enter **Sales AA** for the name. 
+In this task, you create an auto attendant and route its business-hours calls to the Sales call queue.
 
-1. Time zone of **(UTC-08:00) Pacific Time (US…)**,
+1. In the **Microsoft Teams admin center**, select **Voice** > **Auto attendants**, then select **Add**.
 
-1. Select **English** or your preferred language.
+1. Enter **Sales AA** as the name, then select **Advanced setup**.
 
-1. Select **Classic Setup**.
+1. On the **General info** page, configure the following settings:
 
-1. select **Next**.
+    - **Name**: **Sales AA**
+    - **How do callers reach this auto attendant**: **Through a resource account**
+    - **Resource account**: **Sales AA**
+    - **Language**: **English (United States)**
 
-1. Under **Call flow**, select **Add a greeting message** and enter, “Thank you for calling Contoso, your call is important to us, please be patient while we handle your call”.
+1. On the **Call handling hours** page, set the time zone to **(UTC-08:00) Pacific Time (US & Canada)**, keep the default business hours, and then select **Next**.
 
-1. Under **Call routing options**, select **Redirect Call**, then select Redirect to **Voice App**, enter **Sales CQ**, then select **Next**
+1. On the **Business-hours call flow** page, select **Add a greeting message** and enter **Thank you for calling Contoso. Your call is important to us. Please wait while we handle your call.**
 
-1. Under **After-hours call flow** leave the defaults and select **next**, 
+1. Under **Call routing options**, select **Redirect call** > **Voice app**, select **Sales CQ**, and then select **Next**.
 
-1. Under **Holidays call flow** select **Next**, 
+1. Select **Next** through the after-hours flow, holiday flow, and dial scope pages to keep their default settings. On the final page, select **Submit**, then confirm that **Sales AA** appears in the auto attendants list.
 
-1. Under **Dial scope** select **Next**.
+You have created the Sales AA auto attendant and routed its business-hours calls to the Sales CQ call queue.
 
-1. Under **Resource Accounts**, Select **Add**, enter **Sales AA** in the search box, then select **Add Resource Account**, enter the following values:
-    - **Display Name** of **Sales AA**
-    - **Unique Username** is **SalesAA**
-    - **Domain name** is the default Microsoft 365 domain
-    - **Resource account type** of **Auto Attendant**
-
-1. Select **Save**.
-
-1. Select **Add**, select **Submit** under **Resource Accounts** menu.
-
-1. You will see your Sales AA auto attendant in the auto attendants list
-
-1. Leave the Teams Admin Center open for the next task
-
-You have successfully created an Auto Attendant, and aligned it to a Call Queue.
-
-### Task 3 – Configure a Call Queue to use a channel
+### Task 4 – Configure a Call Queue to use a channel
 
 Collaborative calling enables you to connect a call queue to a channel in Teams. Users can collaborate and share information in the channel while taking calls in the queue. Instead of defining the agents in the Teams Admin Center, the agents are defined by who are members of the team.
 
@@ -300,7 +294,7 @@ Collaborative calling enables you to connect a call queue to a channel in Teams.
 
 You have successfully assigned the call answering for the Call Queue to the General channel within the Sales Group team.
 
-### Task 4 - Configure a Call Queue to forward to voicemail if busy
+### Task 5 - Configure a Call Queue to forward to voicemail if busy
 
 By default, if a call to a call queue isn't answered by an agent within the maximum wait time, it will be disconnected. We would like to configure unanswered calls to go to voicemail instead. The voicemail must be a Microsoft 365 group voicemail.
 
@@ -320,7 +314,7 @@ By default, if a call to a call queue isn't answered by an agent within the maxi
 
 You have successfully assigned a voicemail to the Call Queue should it reach a time out period. 
 
-### Task 5 - Explore conference mode toggle
+### Task 6 - Explore conference mode toggle
 
 In this task, you will enable conference mode that will pass the call between the inbound calls more quickly.
 
@@ -334,7 +328,7 @@ In this task, you will enable conference mode that will pass the call between th
 
 You have successfully enabled conferencing mode for **Sales CQ** call queue.
 
-### Task 6 - Set holiday modes within AA
+### Task 7 - Set holiday modes within AA
 
 In this task, you will create the relevant holiday configuration. Holidays differ from country to country but in this instance, we will just create a new holiday time that’s relevant to you. 
 
@@ -376,7 +370,7 @@ In this task, you will create the relevant holiday configuration. Holidays diffe
 
 You have successfully created a holiday and assigned its call flow to the Sales AA auto attendant.
 
-### Task 7 - Import MP4 file for custom music on hold
+### Task 8 - Import MP4 file for custom music on hold
 
 In this task, you will obtain a free MP3 to the music on hold solution for the Sales Call Queue
 
@@ -551,29 +545,25 @@ After applying a tag to devices, you can then use the **Search** box in the devi
 
 In this exercise, you will perform exercises to help troubleshoot specific issues and monitor call use and quality. All test calls in this exercise route through the Session Border Controller deployed in Lab 3.
 
-### Task 1 - Run self-help diagnostics tool in Microsoft 365 admin center
+### Task 1 - Troubleshoot Teams voicemail with Support Assistant
 
-Isaiah Langer has reported they are not receiving voicemails. Microsoft offers some self-help diagnostics tools that can be run before raising a support ticket. In this task, you will run the Voicemail diagnostic that validates that a user is properly configured to use Voicemail in Teams.
+Isaiah Langer reports that they aren't receiving voicemails. In this task, you use Support Assistant to review troubleshooting guidance and run the Voicemail diagnostic before opening a support request.
 
-1. You are still signed in to MS721-CLIENT01 as “Admin” and signed into the **Microsoft 365 admin center** as **MOD Administrator**.
+1. On MS721-CLIENT01, open the [Microsoft 365 admin center](https://admin.microsoft.com/) and sign in as **MOD Administrator**.
 
-1. Navigate to the **Microsoft 365 admin center** at admin.microsoft.com.
+1. On the left menu, select **Show all**, then select **Users** > **Active users**.
 
-1. On the left menu, select **Show all**, then **Users** and **Active Users**. 
+1. Find **Isaiah Langer** and note their username or email address. You need it to run the diagnostic.
 
-1. Find Isaiah Langer and note down their username and email address, you will need it to run the test.
+1. On the left menu, select **Show all**, then select **Support** > **Help & support**.
 
-1. On the left menu, select **show all**, then **Support** and under the support menu **Help & support**.
+1. Confirm that **Support Assistant** is **On**. In the message field, enter **Help me troubleshoot why a Teams user is not receiving voicemail**, then send the message.
 
-1. In the **How can we help?** dialogue, enter **Diag: Voicemail** and press enter to jump straight to the voicemail diagnostics test.
+1. Review the troubleshooting guidance. When Support Assistant offers diagnostic options, select **Voicemail**, enter Isaiah Langer's username or email address, and select **Run Tests**.
 
-1. You will see the following diagnostics test **We understand you are having issues with receiving voicemails in Teams**. Under Username or Email enter Isaiah Langer Username and email.
+1. Review the results. The diagnostic should report that it didn't find any problems. If it reports an issue, review and apply the recommended tenant or policy corrections.
 
-1. Select **Run Tests**.
-
-1. The result should be **Our tests didn´t find any problems**.
-
-You have successfully used the Microsoft 365 self-help diagnostics to confirm that there are no configuration issues with Isaiah Langers’s voicemail.
+You have successfully used Support Assistant and the Microsoft 365 self-help diagnostic to check Isaiah Langer's voicemail configuration.
 
 ### Task 2 - Break a dial plan and check the issue
 

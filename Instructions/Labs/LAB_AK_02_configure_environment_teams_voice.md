@@ -720,7 +720,7 @@ Contoso does a lot of work with companies in New York and would prefer a New Yor
 
 1. You are still signed in as the Teams Administrator **Allan Deyoung**.
 
-1. Navigate to **Meetings** on the left menu then **Conference bridges**.
+1. Navigate to **Meetings** on the left menu, then select **Audio Conferencing Bridges**.
 
 1. You will see all the conference bridge numbers listed; one number will have (Default) beside it. That is the current default.
 

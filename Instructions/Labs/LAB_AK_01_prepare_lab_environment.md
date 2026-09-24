@@ -85,15 +85,15 @@ In this task you will sign into the clients provided by your training provider a
 
 1. Validate you can see 10 of the **Microsoft 365 E5 (no Teams)** licenses are now applied to users, with 5 remaining licenses available. You should also see licenses for the following:
     
-    - Microsoft Teams Domestic Calling Plan Trial
+    - Microsoft Teams Domestic Calling Plan
 
     - Microsoft Teams Enterprise
     
-    - Microsoft Teams Phone Resource Account Trial
+    - Microsoft Teams Phone Resource Account
 
-    - Microsoft Teams Premium Introductory Pricing Trial
+    - Microsoft Teams Premium
 
-    - Microsoft Teams Rooms Pro Trial
+    - Microsoft Teams Rooms Pro
 
 1. Select **Microsoft 365 E5 (no Teams)** to see the users that are assigned that license.
 
